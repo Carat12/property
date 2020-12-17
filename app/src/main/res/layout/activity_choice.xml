@@ -1,0 +1,21 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_choice_login"
+        style="@style/btn_auth_choice"
+        android:background="@drawable/bg_btn_auth"
+        android:backgroundTint="@color/rose_quartz"
+        android:text="Login" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_choice_register"
+        style="@style/btn_auth_choice"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/bg_btn_auth"
+        android:backgroundTint="@color/serenity"
+        android:text="Sign up" />
+</LinearLayout>

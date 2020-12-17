@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Property</string>
+    <string name="direction_register_choice">Which type of account do you want to sign up for?</string>
+    <string name="have_an_acct">Already have an account? Log in now!</string>
+    <string name="no_acct">Don\'t have an account? Sign up now!</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <declare-styleable name="dashboard_item">
+        <attr name="imgSrc" format="reference" />
+        <attr name="title" format="string" />
+    </declare-styleable>
+</resources>

@@ -1,0 +1,121 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.property.ui.auth.AuthViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            android:layout_marginTop="70dp"
+            android:layout_marginBottom="50dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/logo" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/text_input_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Email"
+            app:boxStrokeWidthFocused="2dp"
+            app:startIconDrawable="@drawable/ic_baseline_email_24">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@={viewModel.email}"
+                android:textSize="20sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/text_input_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:hint="Password"
+            app:endIconDrawable="@drawable/ic_baseline_visibility_off_24"
+            app:endIconMode="password_toggle"
+            app:startIconDrawable="@drawable/ic_baseline_lock_open_24">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:text="@={viewModel.pw}"
+                android:textSize="20sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="25dp">
+
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/btn_auth_text"
+                android:layout_marginTop="0dp"
+                android:background="@null"
+                android:text="Forgot password?" />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="Remember me"
+                android:textColor="@color/text_black" />
+        </RelativeLayout>
+
+        <Button
+            style="@style/btn_auth_choice"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/bg_btn_auth"
+            android:backgroundTint="@color/rose_quartz"
+            android:onClick="@{viewModel::onLogInClicked}"
+            android:text="Sign in" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginVertical="10dp">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_centerInParent="true"
+                android:background="@drawable/divider_line" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="@color/white"
+                android:paddingHorizontal="10dp"
+                android:text="or"
+                android:textSize="17dp" />
+        </RelativeLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            style="@style/btn_auth_choice"
+            android:layout_marginHorizontal="20dp"
+            android:background="@drawable/bg_btn_outline"
+            android:text="Continue with Google"
+            android:textColor="@color/rose_quartz" />
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_to_signup"
+            style="@style/btn_auth_text"
+            android:background="@null"
+            android:text="@string/no_acct" />
+
+    </LinearLayout>
+</layout>

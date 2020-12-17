@@ -1,0 +1,101 @@
+<layout>
+    <data>
+        <variable
+            name="property"
+            type="com.example.property.data.models.Property" />
+        <variable
+            name="viewModel"
+            type="com.example.property.ui.property.PropertyViewModel" />
+    </data>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include layout="@layout/tool_bar"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="20dp">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="street"
+                android:text="@={property.address}"
+                android:textSize="25sp"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="city"
+                android:text="@={property.city}"
+                android:textSize="25sp"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="state"
+                android:text="@={property.state}"
+                android:textSize="25sp"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="country"
+                android:text="@={property.country}"
+                android:textSize="25sp"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="purchase price"
+                android:text="@={property.purchasePrice}"
+                android:textSize="25sp"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_marginTop="20dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:background="@drawable/bg_text_upload_image">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Upload image"
+                        android:textSize="30sp"
+                        android:textColor="@color/serenity"/>
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Camera"
+                        android:id="@+id/btn_camera"
+                        android:background="@color/serenity"
+                        android:layout_marginTop="10dp"
+                        android:textColor="@color/dark_serenity"/>
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Gallery"
+                        android:id="@+id/btn_gallery"
+                        android:layout_marginTop="10dp"
+                        android:background="@color/serenity"
+                        android:textColor="@color/dark_serenity"/>
+                </LinearLayout>
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/img_view"
+                    android:adjustViewBounds="true"/>
+            </RelativeLayout>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="add"
+                android:layout_marginTop="20dp"
+                style="@style/btn_auth_choice"
+                android:onClick="@{viewModel::onAddPropertyClicked}"/>
+        </LinearLayout>
+    </LinearLayout>
+</layout>
