@@ -21,7 +21,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/rose_quartz"
+                android:background="@color/rose_red"
                 android:padding="20dp"
                 android:text="Dashboard"
                 android:textColor="@color/white"

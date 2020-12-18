@@ -22,7 +22,7 @@ class AuthViewModel: ViewModel(){
     var loginResult: MutableLiveData<User> = MutableLiveData()
 
     companion object{
-        lateinit var currentUser: User
+        //lateinit var currentUser: User
     }
 
     fun setAcctType(acctType: String) {
@@ -49,8 +49,8 @@ class AuthViewModel: ViewModel(){
         return repository.getLoginError()
     }
 
-    fun setCurrentUser(t: User) {
+    /*fun setCurrentUser(t: User) {
         currentUser = t
         //Log.d("woozi", "${currentUser.type}. ${currentUser.email}, ${currentUser.pw}")
-    }
+    }*/
 }

@@ -13,7 +13,7 @@ import com.example.property.R
 import com.example.property.data.models.User
 import com.example.property.databinding.FragmentRegisterBinding
 import com.example.property.helper.toast
-import com.example.property.ui.auth.MyListener
+import com.example.property.ui.MyListener
 import com.example.property.ui.auth.AuthViewModel
 import com.example.property.ui.auth.login.LoginActivity
 import kotlinx.android.synthetic.main.fragment_register.view.*

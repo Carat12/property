@@ -10,5 +10,11 @@ class Config {
 
         const val BASE_URL = "https://apolis-property-management.herokuapp.com/api/"
         const val MESSAGAE_KEY = "message"
+
+        const val FILE_NAME = "userinfo"
+        const val USER_ID_KEY = "userId"
+        const val USER_TYPE_KEY = "type"
+        const val USER_NAME_KEY = "name"
+        const val USER_EMAIL_KEY = "email"
     }
 }

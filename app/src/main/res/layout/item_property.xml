@@ -1,47 +1,65 @@
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <variable
             name="property"
             type="com.example.property.data.models.Property" />
     </data>
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.cardview.widget.CardView
+        android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <LinearLayout
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginVertical="5dp"
+        app:cardElevation="5dp">
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:padding="20dp">
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_baseline_house_24"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@{property.address}"
-                android:textSize="22sp"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@{property.addressLine}"
-                android:textSize="22sp"/>
-            <ImageView
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:id="@+id/img_view"
-                android:src="@drawable/ic_baseline_house_24"/>
-        </LinearLayout>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{property.purchasePrice}"
-            android:textColor="@color/rose_red"
-            android:textSize="23sp"
-            android:textStyle="bold"
-            android:layout_alignParentRight="true"
-            android:layout_margin="20dp"/>
-    </RelativeLayout>
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_baseline_location_on_24"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{property.address}"
+                    android:textSize="22sp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{property.addressLine}"
+                    android:textSize="22sp"/>
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:id="@+id/img_view"
+                    android:layout_marginTop="15dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_baseline_house_24"/>
+            </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="$"
+                android:id="@+id/text_view_sign"
+                android:textSize="23sp"
+                android:textStyle="bold"
+                android:textColor="@color/rose_red"
+                android:layout_toLeftOf="@+id/text_view_price"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/text_view_price"
+                android:text="@{property.purchasePrice}"
+                android:textColor="@color/rose_red"
+                android:textSize="23sp"
+                android:textStyle="bold"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="5dp"/>
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
 </layout>

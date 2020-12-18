@@ -63,4 +63,7 @@ dependencies {
 
     //Picasso
     implementation 'com.squareup.picasso:picasso:2.71828'
+
+    //Dexter
+    implementation 'com.karumi:dexter:6.2.2'
 }

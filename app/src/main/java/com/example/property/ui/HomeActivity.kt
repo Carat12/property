@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import com.example.property.R
+import com.example.property.helper.SessionManager
 import com.example.property.ui.auth.AuthViewModel
 import com.example.property.ui.property.PropertyActivity
 import kotlinx.android.synthetic.main.activity_home.*
@@ -21,7 +22,8 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun init() {
         //tool bar
-        tool_bar.title = "Welcome, ${AuthViewModel.currentUser.name}"
+        tool_bar.title = "Welcome, ${SessionManager.currentUser.name}"
+        tool_bar.setBackgroundColor(Color.WHITE)
 
         item_property.setOnClickListener(this)
     }

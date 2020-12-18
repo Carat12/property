@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="Theme.Property.Rose" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!--         Primary brand color.-->
-        <item name="colorPrimary">@color/rose_quartz</item>
+        <item name="colorPrimary">@color/rose_red</item>
         <item name="colorPrimaryVariant">@color/center</item>
         <item name="colorOnPrimary">@color/white</item>
         <!--         Secondary brand color.-->
@@ -12,7 +12,7 @@
         <!--         Status bar color.-->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!--         Customize your theme here.-->
-        <item name="android:textColor">@color/text_black</item>
+        <item name="android:textColor">@color/dark_serenity</item>
         <item name="colorControlNormal">@color/serenity</item>
     </style>
 

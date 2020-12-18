@@ -35,6 +35,10 @@ data class Image(
     val storageClass: String
 )
 
+data class Metadata(
+    val fieldName: String
+)
+
 data class PostPropertyResponse(
     val data: Property,
     val error: Boolean,

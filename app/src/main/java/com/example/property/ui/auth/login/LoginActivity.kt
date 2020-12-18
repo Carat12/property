@@ -9,9 +9,10 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.property.R
 import com.example.property.data.models.User
 import com.example.property.databinding.ActivityLoginBinding
+import com.example.property.helper.SessionManager
 import com.example.property.helper.toast
 import com.example.property.ui.HomeActivity
-import com.example.property.ui.auth.MyListener
+import com.example.property.ui.MyListener
 import com.example.property.ui.auth.AuthViewModel
 import com.example.property.ui.auth.register.RegisterActivity
 import kotlinx.android.synthetic.main.activity_login.*
@@ -37,7 +38,8 @@ class LoginActivity : AppCompatActivity(), MyListener {
             override fun onChanged(t: User?) {
                 if(t != null) {
                     onSuccess("Login succeeded!")
-                    viewModel.setCurrentUser(t)
+                    SessionManager.getInstance(this@LoginActivity).saveCurrentUser(t)
+                    //viewModel.setCurrentUser(t)
                 }else
                     onFailure(viewModel.getLoginError())
             }

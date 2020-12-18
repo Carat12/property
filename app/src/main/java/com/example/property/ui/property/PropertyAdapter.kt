@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.property.R
 import com.example.property.data.models.Property
 import com.example.property.databinding.ItemPropertyBinding
+import com.example.property.helper.SessionManager
+import com.example.property.ui.auth.AuthViewModel
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_property.view.*
 
@@ -27,8 +29,12 @@ class PropertyAdapter(var mContext: Context) : RecyclerView.Adapter<PropertyAdap
         return mList.size
     }
 
-    fun setData(t: ArrayList<Property>) {
-        mList = t
+    fun setData(propertyList: ArrayList<Property>) {
+        mList = ArrayList()
+        for(p in propertyList){
+            if(p.userId.equals(SessionManager.currentUser._id))
+                mList.add(p)
+        }
         notifyDataSetChanged()
     }
 

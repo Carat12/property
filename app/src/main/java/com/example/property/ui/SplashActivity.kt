@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import com.example.property.R
+import com.example.property.helper.SessionManager
 import com.example.property.ui.auth.ChoiceActivity
 
 class SplashActivity : AppCompatActivity() {
@@ -18,7 +19,14 @@ class SplashActivity : AppCompatActivity() {
         val handler = Handler()
         handler.postDelayed(
             {
-            startActivity(Intent(this, ChoiceActivity::class.java))
+                checkLoggedIn()
         }, DELAY_TIME)
+    }
+
+    private fun checkLoggedIn() {
+        if(SessionManager.getInstance(this).checkLoggedIn())
+            startActivity(Intent(this, HomeActivity::class.java))
+        else
+            startActivity(Intent(this, ChoiceActivity::class.java))
     }
 }
