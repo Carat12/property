@@ -17,6 +17,11 @@
     <color name="text_black">#AAAAAA</color>
     <color name="dark_serenity">#3E567C</color>
     <color name="dark_rose">#c49998</color>
+    <color name="light_rose">#F5E9ED</color>
     <color name="rose_red">#e86664</color>
     <color name="bg_dark">#464F56</color>
+    <color name="light_serenity">#edf1f7</color>
+    <color name="property_bg_grey">#F0F0F0</color>
+    <color name="step_grey">#DCDCDC</color>
+    <color name="text_grey">#828282</color>
 </resources>

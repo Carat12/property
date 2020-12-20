@@ -18,6 +18,10 @@ class SessionManager(context: Context) {
                 instance = SessionManager(context)
             return instance!!
         }
+
+        fun isTenant(): Boolean{
+            return currentUser.type!! == Config.ACCOUNT_TENANT
+        }
     }
 
     fun saveCurrentUser(user: User){
@@ -36,5 +40,9 @@ class SessionManager(context: Context) {
         val email = sp.getString(Config.USER_EMAIL_KEY, null)
         currentUser = User(type, name, email, _id = id)
         return id != null
+    }
+
+    fun logout() {
+        editor.clear().commit()
     }
 }

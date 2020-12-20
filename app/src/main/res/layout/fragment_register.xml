@@ -1,7 +1,6 @@
 <layout xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
         <variable
             name="viewModel"
             type="com.example.property.ui.auth.AuthViewModel" />
@@ -23,7 +22,23 @@
         <com.google.android.material.textfield.TextInputLayout
             style="@style/text_input_layout"
             android:layout_width="match_parent"
+            android:id="@+id/edit_text_landlord_email"
             android:layout_height="wrap_content"
+            android:hint="Landlord Email"
+            app:startIconDrawable="@drawable/ic_baseline_email_24">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@={viewModel.landlordEmail}"
+                android:textSize="20sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/text_input_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:hint="Name"
             app:startIconDrawable="@drawable/ic_baseline_person_24">
 
@@ -38,7 +53,7 @@
             style="@style/text_input_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="10dp"
             android:hint="Email"
             app:startIconDrawable="@drawable/ic_baseline_email_24">
 
@@ -53,7 +68,7 @@
             style="@style/text_input_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="10dp"
             android:hint="Password"
             app:endIconDrawable="@drawable/ic_baseline_visibility_off_24"
             app:endIconMode="password_toggle"
@@ -67,11 +82,11 @@
                 android:textSize="20sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
+        <!--<com.google.android.material.textfield.TextInputLayout
             style="@style/text_input_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="10dp"
             android:hint="Confirm Password"
             app:endIconDrawable="@drawable/ic_baseline_visibility_off_24"
             app:endIconMode="password_toggle"
@@ -83,7 +98,7 @@
                 android:inputType="textPassword"
                 android:text="@={viewModel.confirmPw}"
                 android:textSize="20sp" />
-        </com.google.android.material.textfield.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>-->
 
         <Button
             style="@style/btn_auth_choice"

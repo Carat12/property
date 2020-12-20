@@ -1,50 +1,26 @@
-package com.example.property.ui.property
+package com.example.property.ui.property.addproperty
 
-import android.Manifest
 import android.app.Activity
-import android.app.AlertDialog
-import android.content.ContentValues
-import android.content.DialogInterface
 import android.content.Intent
-import android.database.Cursor
-import android.graphics.Bitmap
-import android.net.Uri
+import android.os.Build
 import android.os.Bundle
-import android.os.Environment
-import android.provider.MediaStore
-import android.provider.Settings
 import android.util.Log
 import android.view.MenuItem
-import android.view.View
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import com.example.property.R
-import com.example.property.databinding.ActivityAddPropertyBinding
-import com.example.property.helper.toast
-import com.example.property.ui.MyListener
-import com.karumi.dexter.Dexter
-import com.karumi.dexter.MultiplePermissionsReport
-import com.karumi.dexter.PermissionToken
-import com.karumi.dexter.listener.PermissionRequest
-import com.karumi.dexter.listener.multi.MultiplePermissionsListener
-import kotlinx.android.synthetic.main.activity_add_property.*
+import com.example.property.ui.property.PropertyViewModel
 import kotlinx.android.synthetic.main.tool_bar.*
-import java.io.File
 
-class AddPropertyActivity : AppCompatActivity(), View.OnClickListener, MyListener {
+class AddPropertyActivity : AppCompatActivity(){
 
-    private lateinit var mBinding: ActivityAddPropertyBinding
+    //private lateinit var mBinding: ActivityAddPropertyBinding
     private lateinit var viewModel: PropertyViewModel
-    private val IMAGE_CAPTURE = 111
-    private val PICK_FROM_GALLERY = 222
-    private val OPEN_SETTINGS = 333
 
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        mBinding = DataBindingUtil.setContentView(this, R.layout.activity_add_property)
+        setContentView(R.layout.activity_add_property)
 
         init()
     }
@@ -55,38 +31,10 @@ class AddPropertyActivity : AppCompatActivity(), View.OnClickListener, MyListene
         setSupportActionBar(tool_bar)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
-        //view model
-        registerViewModel()
-
-        //buttons
-        btn_camera.setOnClickListener(this)
-        btn_gallery.setOnClickListener(this)
-    }
-
-    private fun registerViewModel() {
-        viewModel = ViewModelProvider(this).get(PropertyViewModel::class.java)
-        mBinding.property = viewModel.property
-        mBinding.viewModel = viewModel
-        //observe posting image result
-        viewModel.postPropertyImgResult.observe(this, object : Observer<String> {
-            override fun onChanged(t: String?) {
-                if (t != null) {
-                    Log.d("jun", "imgpath: $t")
-                    viewModel.postNewProperty(t)
-                } else
-                    onFailure(viewModel.getPostImgErrorMsg())
-            }
-        })
-
-        //observe posting property result
-        viewModel.postPropertyResult.observe(this, object : Observer<String> {
-            override fun onChanged(t: String?) {
-                if (t != null)
-                    onSuccess(t)
-                else
-                    onFailure(viewModel.getPostPropertyErrorMsg())
-            }
-        })
+        //fragment
+        supportFragmentManager.beginTransaction()
+            .add(R.id.fragment_container_property, StepOneFragment())
+            .commit()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -96,11 +44,22 @@ class AddPropertyActivity : AppCompatActivity(), View.OnClickListener, MyListene
         return true
     }
 
-    override fun onClick(v: View?) {
-        checkPermissions(v)
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        when (requestCode) {
+            222 -> {
+                if (resultCode == Activity.RESULT_OK) {
+                    Log.d("jun", "in activity: get result from gallery")
+                }
+            }
+            111 -> {
+                if (resultCode == Activity.RESULT_OK) {
+                    Log.d("jun", "in activity: get result from camera")
+                }
+            }
+        }
     }
-
-    private fun checkPermissions(v: View?) {
+    /*private fun checkPermissions(v: View?) {
         Dexter.withContext(this)
             .withPermissions(
                 arrayListOf(
@@ -229,14 +188,6 @@ class AddPropertyActivity : AppCompatActivity(), View.OnClickListener, MyListene
         } finally {
             cursor?.close()
         }
-    }
+    }*/
 
-    override fun onSuccess(msg: String) {
-        toast(msg)
-        finish()
-    }
-
-    override fun onFailure(msg: String) {
-        toast(msg)
-    }
 }

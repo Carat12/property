@@ -38,6 +38,7 @@ class PropertyRepository {
     }
 
     fun postNewProperty(property: Property, result: MutableLiveData<String>){
+        Log.d("jun","p: ${property.address}, ${property.city}, ${property.state}, ${property.country}, ${property.purchasePrice}")
         api.postProperty(property).enqueue(object : Callback<PostPropertyResponse>{
             override fun onResponse(
                 call: Call<PostPropertyResponse>,
@@ -50,7 +51,6 @@ class PropertyRepository {
                     result.value = null
                 }
             }
-
             override fun onFailure(call: Call<PostPropertyResponse>, t: Throwable) {
                 postPropertyErrorMsg = t.message.toString()
                 result.value = null
@@ -99,8 +99,9 @@ class PropertyRepository {
                 call: Call<GetPropertyResponse>,
                 response: Response<GetPropertyResponse>
             ) {
-                if(response.isSuccessful)
+                if(response.isSuccessful) {
                     result.value = response.body()!!.data
+                }
                 else{
                     getPropertyErrorMsg = JSONObject(response.errorBody()!!.string()).getString(Config.MESSAGAE_KEY)
                     result.value = null

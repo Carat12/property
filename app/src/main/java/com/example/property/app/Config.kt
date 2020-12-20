@@ -16,5 +16,12 @@ class Config {
         const val USER_TYPE_KEY = "type"
         const val USER_NAME_KEY = "name"
         const val USER_EMAIL_KEY = "email"
+
+        const val LOCATION_KEY = "location"
+        const val RECEIVER_KEY = "receiver"
+        const val SUCCESS = 1111
+        const val FAILURE = 2222
+        const val RESULT_KEY = "result"
+
     }
 }

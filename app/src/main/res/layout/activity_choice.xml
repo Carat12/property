@@ -3,7 +3,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="20dp">
-
+<!--
     <Button
         android:id="@+id/btn_choice_login"
         style="@style/btn_auth_choice"
@@ -17,5 +17,5 @@
         android:layout_marginTop="15dp"
         android:background="@drawable/bg_btn_auth"
         android:backgroundTint="@color/serenity"
-        android:text="Sign up" />
+        android:text="Sign up" />-->
 </LinearLayout>

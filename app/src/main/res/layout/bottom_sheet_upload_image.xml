@@ -1,0 +1,33 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Photo"
+        android:textColor="@color/text_grey"
+        android:layout_margin="20dp"
+        android:textSize="20sp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_camera"
+        style="@style/btn_upload_images_option"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Use Camera"
+        android:textSize="18sp"
+        app:icon="@drawable/ic_baseline_camera_alt_24" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_gallery"
+        style="@style/btn_upload_images_option"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:textSize="18sp"
+        android:text="Upload from Gallery"
+        app:icon="@drawable/ic_baseline_photo_library_24" />
+</LinearLayout>

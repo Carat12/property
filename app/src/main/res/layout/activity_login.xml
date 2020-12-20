@@ -76,39 +76,21 @@
             style="@style/btn_auth_choice"
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
             android:background="@drawable/bg_btn_auth"
             android:backgroundTint="@color/rose_quartz"
             android:onClick="@{viewModel::onLogInClicked}"
             android:text="Sign in" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginVertical="10dp">
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:layout_centerInParent="true"
-                android:background="@drawable/divider_line" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:background="@color/white"
-                android:paddingHorizontal="10dp"
-                android:text="or"
-                android:textSize="17dp" />
-        </RelativeLayout>
+        <include layout="@layout/divider_or"/>
 
         <androidx.appcompat.widget.AppCompatButton
             style="@style/btn_auth_choice"
             android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="10dp"
             android:background="@drawable/bg_btn_outline"
             android:text="Continue with Google"
-            android:textColor="@color/rose_quartz" />
+            android:textColor="@color/rose_red" />
 
 
         <androidx.appcompat.widget.AppCompatButton

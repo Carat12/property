@@ -1,5 +1,6 @@
 package com.example.property.ui.property
 
+import android.location.Address
 import android.util.Log
 import android.view.View
 import androidx.lifecycle.MutableLiveData
@@ -7,11 +8,11 @@ import androidx.lifecycle.ViewModel
 import com.example.property.data.models.Property
 import com.example.property.data.repository.PropertyRepository
 import com.example.property.helper.SessionManager
-import com.example.property.ui.auth.AuthViewModel
 
-class PropertyViewModel: ViewModel() {
-
+class PropertyViewModel: ViewModel(){
+    //data binding
     var property = Property()
+
     private val repository = PropertyRepository.getInstance()
     private var imagePath: String? = null
 
@@ -25,7 +26,7 @@ class PropertyViewModel: ViewModel() {
     }
 
     fun onAddPropertyClicked(view: View){
-        Log.d("jun", "${property.address},${property.city},${property.state},${property.country}")
+        Log.d("jun", "p: ${property.address},${property.city},${property.state},${property.country},${property.purchasePrice},$imagePath,${property.mortageInfo}")
         if(imagePath != null){
             repository.postPropertyImage(imagePath!!, postPropertyImgResult)
         }else{
@@ -54,5 +55,13 @@ class PropertyViewModel: ViewModel() {
 
     fun getGetPropertyErrorMsg(): String {
         return repository.getGetPropertyErrorMsg()
+    }
+
+    fun setPropertyAddress(address: Address?) {
+        property.address = "${address?.featureName} ${address?.thoroughfare}"
+        property.city = address?.locality
+        property.state = address?.adminArea
+        property.country = address?.countryName
+        Log.d("jun", "yes: $property")
     }
 }

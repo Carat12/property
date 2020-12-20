@@ -5,6 +5,7 @@ data class User(
     val name: String? = null,
     val email: String? = null,
     val password: String? = null,
+    val landlordEmail: String? = null,
     val _id: String? = null,
     val createdAt: String? = null
 ){
@@ -12,3 +13,11 @@ data class User(
         const val KEY_USER = "User"
     }
 }
+/*
+
+data class Tenant(
+    type: String?,
+    name: String?,
+    email: String?,
+    password: String?,
+): User()*/

@@ -1,0 +1,177 @@
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="property"
+            type="com.example.property.data.models.Property" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/property_bg_grey"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/img_view_step"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/bg_img_view_circle"
+            android:padding="10dp"
+            android:src="@drawable/ic_baseline_location_on_24" />
+
+        <TextView
+            android:id="@+id/text_view_step"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="Property Address"
+            android:textSize="17sp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <View
+                android:id="@+id/circle_step_one"
+                android:layout_width="17dp"
+                android:layout_height="17dp"
+                android:background="@drawable/bg_step_circle"
+                android:backgroundTint="@color/rose_red" />
+
+            <View
+                android:id="@+id/line_step_one"
+                android:layout_width="80dp"
+                android:layout_height="3dp"
+                android:background="@color/step_grey" />
+
+            <View
+                android:id="@+id/circle_step_two"
+                android:layout_width="17dp"
+                android:layout_height="17dp"
+                android:background="@drawable/bg_step_circle"
+                android:backgroundTint="@color/step_grey" />
+
+            <View
+                android:id="@+id/line_step_two"
+                android:layout_width="80dp"
+                android:layout_height="3dp"
+                android:background="@color/step_grey" />
+
+            <View
+                android:id="@+id/circle_step_three"
+                android:layout_width="17dp"
+                android:layout_height="17dp"
+                android:background="@drawable/bg_step_circle"
+                android:backgroundTint="@color/step_grey" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:paddingTop="20dp">
+
+            <com.google.android.material.button.MaterialButton
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:text="Get current location"
+                android:id="@+id/btn_get_location"
+                android:textSize="15sp"
+                app:icon="@drawable/ic_baseline_my_location_24" />
+
+            <include layout="@layout/divider_or"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20sp"
+                android:text="Enter address"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/rose_red"
+                android:textSize="17sp"/>
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/text_input_layout_property"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:hint="Street">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:text="@={property.address}"
+                    android:textSize="20sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/text_input_layout_property"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:hint="City">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:text="@={property.city}"
+                    android:textSize="20sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/text_input_layout_property"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:hint="State">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:text="@={property.state}"
+                    android:textSize="20sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/text_input_layout_property"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:hint="Country">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:text="@={property.country}"
+                    android:textSize="20sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <Button
+                    android:id="@+id/btn_next"
+                    style="@style/btn_add_property_next"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_btn_auth"
+                    android:text="Next" />
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+</layout>

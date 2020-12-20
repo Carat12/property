@@ -3,6 +3,7 @@
     <string name="direction_register_choice">Which type of account do you want to sign up for?</string>
     <string name="have_an_acct">Already have an account? Log in now!</string>
     <string name="no_acct">Don\'t have an account? Sign up now!</string>
+    <string name="mortgage_description">If your property has a mortgage, then inputting its mortgage terms enables Housters to automatically set the principal, interest, and escrow amounts when you log mortgage payment transactions. If you made extra principal payments, then logging them as mortgage principal transactions will update the amortization schedule.</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 

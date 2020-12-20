@@ -1,8 +1,11 @@
 package com.example.property.ui.property
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.example.property.R
 import com.example.property.data.models.Property
@@ -31,9 +34,13 @@ class PropertyAdapter(var mContext: Context) : RecyclerView.Adapter<PropertyAdap
 
     fun setData(propertyList: ArrayList<Property>) {
         mList = ArrayList()
-        for(p in propertyList){
-            if(p.userId.equals(SessionManager.currentUser._id))
-                mList.add(p)
+        if (SessionManager.isTenant())
+            mList = propertyList
+        else {
+            for (p in propertyList) {
+                if (p.userId.equals(SessionManager.currentUser._id))
+                    mList.add(p)
+            }
         }
         notifyDataSetChanged()
     }
@@ -41,7 +48,11 @@ class PropertyAdapter(var mContext: Context) : RecyclerView.Adapter<PropertyAdap
     inner class ViewHolder(var itemBinding: ItemPropertyBinding) :
         RecyclerView.ViewHolder(itemBinding.root) {
         fun bind(property: Property) {
+            property.setAddressLine()
             itemBinding.property = property
+            itemBinding.root.text_view_mortgage_true.isVisible = property.mortageInfo!!
+            Log.d("jun", "mot: ${property.mortageInfo}")
+            itemBinding.root.text_view_mortgage_false.isVisible = !property.mortageInfo!!
             Picasso
                 .get()
                 .load(property.image)
@@ -51,3 +62,21 @@ class PropertyAdapter(var mContext: Context) : RecyclerView.Adapter<PropertyAdap
         }
     }
 }
+
+
+/*val text_view_mortgage = itemBinding.root.text_view_mortgage
+text_view_mortgage.setBackgroundColor(mContext.resources.getColor(
+    if(property.mortageInfo!!) R.color.light_rose
+else R.color.light_serenity
+))
+text_view_mortgage.setTextColor(mContext.resources.getColor(
+    if(property.mortageInfo!!) R.color.rose_red
+else R.color.dark_serenity
+))
+text_view_mortgage.compoundDrawables[0].setTint(mContext.resources.getColor(
+    if(property.mortageInfo!!) R.color.rose_red
+else R.color.dark_serenity
+))
+text_view_mortgage.setCompoundDrawables(ContextCompat.getDrawable(mContext,
+    if(property.mortageInfo!!) R.drawable.ic_baseline_check_24
+    else R.drawable.ic_baseline_clear_24), null, null, null)*/

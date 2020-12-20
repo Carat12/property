@@ -4,13 +4,17 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.property.R
+import com.example.property.app.Config
 import com.example.property.data.models.Property
+import com.example.property.helper.SessionManager
 import com.example.property.helper.toast
 import com.example.property.ui.MyListener
+import com.example.property.ui.property.addproperty.AddPropertyActivity
 import kotlinx.android.synthetic.main.activity_property.*
 import kotlinx.android.synthetic.main.tool_bar.*
 
@@ -46,6 +50,7 @@ class PropertyActivity : AppCompatActivity(), MyListener {
         registerViewModel()
 
         //add property
+        btn_add_property.isVisible = !SessionManager.isTenant()
         btn_add_property.setOnClickListener {
             startActivity(Intent(this, AddPropertyActivity::class.java))
         }
@@ -56,8 +61,10 @@ class PropertyActivity : AppCompatActivity(), MyListener {
         viewModel.getAllProperty()
         viewModel.getPropertyResult.observe(this, object : Observer<ArrayList<Property>>{
             override fun onChanged(t: ArrayList<Property>?) {
-                if(t != null)
+                if(t != null) {
                     adapter.setData(t)
+                    //text_view_total.text = "%,d".format(t.size) + " Properties"
+                }
                 else
                     onFailure(viewModel.getGetPropertyErrorMsg())
             }
