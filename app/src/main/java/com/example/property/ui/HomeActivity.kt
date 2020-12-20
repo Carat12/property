@@ -26,7 +26,7 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
     private fun init() {
         //tool bar
         tool_bar.title = "Welcome, ${SessionManager.currentUser.name}"
-        tool_bar.setBackgroundColor(Color.WHITE)
+        //tool_bar.setBackgroundColor(Color.WHITE)
         tool_bar.setTitleTextColor(Color.BLACK)
         setSupportActionBar(tool_bar)
 

@@ -25,7 +25,7 @@
     </style>
 
     <style name="Theme.Property.Toolbar" parent="Theme.Property.Rose">
-        <item name="colorControlNormal">@color/white</item>
+        <item name="colorControlNormal">@color/rose_red</item>
     </style>
 
     <style name="Theme.Property.ActionButton" parent="Theme.Property.Rose">
@@ -82,7 +82,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">17sp</item>
         <item name="android:layout_marginHorizontal">15dp</item>
-        <item name="android:layout_marginBottom">20dp</item>
+        <item name="android:layout_marginBottom">10dp</item>
         <item name="android:layout_alignParentBottom">true</item>
     </style>
 
@@ -102,4 +102,14 @@
         <item name="textAllCaps">false</item>
     </style>
 
+    <style name="custom_cardview_corner" parent="Widget.MaterialComponents.CardView">
+        <item name="shapeAppearanceOverlay">@style/shapeAppearance_custom_corner</item>
+        <item name="cardElevation">10dp</item>
+    </style>
+
+    <style name="shapeAppearance_custom_corner" parent="">
+        <item name="cornerSizeTopRight">40dp</item>
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopLeft">40dp</item>
+    </style>
 </resources>

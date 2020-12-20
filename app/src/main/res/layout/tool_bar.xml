@@ -1,8 +1,9 @@
-<androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.appbar.MaterialToolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/tool_bar"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/white"
     android:theme="@style/Theme.Property.Toolbar"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/rose_red"
-    app:titleTextColor="@color/white"
-    android:id="@+id/tool_bar" />
+    android:elevation="8dp"
+    app:titleTextColor="@color/rose_red" />

@@ -15,9 +15,8 @@ import kotlinx.android.synthetic.main.tool_bar.*
 class AddPropertyActivity : AppCompatActivity(){
 
     //private lateinit var mBinding: ActivityAddPropertyBinding
-    private lateinit var viewModel: PropertyViewModel
+    //private lateinit var viewModel: PropertyViewModel
 
-    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_property)
