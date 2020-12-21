@@ -21,12 +21,28 @@
             app:cardCornerRadius="10dp"
             app:cardElevation="8dp">
 
-            <ImageView
-                android:id="@+id/img_view"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="centerCrop"
-                android:src="@drawable/ic_baseline_house_24" />
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/img_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_baseline_house_24" />
+
+                <ImageButton
+                    android:id="@+id/btn_delete_property"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/bg_btn_circle"
+                    android:padding="5dp"
+                    android:src="@drawable/ic_baseline_delete_outline_24"
+                    android:tint="@color/rose_red" />
+            </RelativeLayout>
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView

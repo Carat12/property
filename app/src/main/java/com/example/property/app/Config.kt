@@ -23,5 +23,8 @@ class Config {
         const val FAILURE = 2222
         const val RESULT_KEY = "result"
 
+        const val TAG_SHOW_UPLOAD_OPTIONS_FRAGMENT = "upload options fragment"
+
+        const val DOCUMENT_TABLE = "documents"
     }
 }

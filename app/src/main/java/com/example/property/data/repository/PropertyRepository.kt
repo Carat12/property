@@ -3,15 +3,11 @@ package com.example.property.data.repository
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.property.app.Config
-import com.example.property.data.models.GetPropertyResponse
-import com.example.property.data.models.PostPropertyResponse
-import com.example.property.data.models.Property
-import com.example.property.data.models.PropertyImgResponse
+import com.example.property.data.models.*
 import com.example.property.data.network.MyApi
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
-import okhttp3.ResponseBody
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
@@ -39,10 +35,10 @@ class PropertyRepository {
 
     fun postNewProperty(property: Property, result: MutableLiveData<String>){
         Log.d("jun","p: ${property.address}, ${property.city}, ${property.state}, ${property.country}, ${property.purchasePrice}")
-        api.postProperty(property).enqueue(object : Callback<PostPropertyResponse>{
+        api.postProperty(property).enqueue(object : Callback<PostOrDeletePropertyResponse>{
             override fun onResponse(
-                call: Call<PostPropertyResponse>,
-                response: Response<PostPropertyResponse>
+                call: Call<PostOrDeletePropertyResponse>,
+                response: Response<PostOrDeletePropertyResponse>
             ) {
                 if(response.isSuccessful)
                     result.value = response.body()!!.message
@@ -51,7 +47,7 @@ class PropertyRepository {
                     result.value = null
                 }
             }
-            override fun onFailure(call: Call<PostPropertyResponse>, t: Throwable) {
+            override fun onFailure(call: Call<PostOrDeletePropertyResponse>, t: Throwable) {
                 postPropertyErrorMsg = t.message.toString()
                 result.value = null
             }
@@ -116,5 +112,31 @@ class PropertyRepository {
 
     fun getGetPropertyErrorMsg(): String {
         return getPropertyErrorMsg!!
+    }
+
+    private var deletePropertyErrorMsg: String? = null
+    fun deleteProperty(propertyId: String, result: MutableLiveData<String>) {
+        api.deleteProperty(propertyId).enqueue(object : Callback<PostOrDeletePropertyResponse>{
+            override fun onResponse(
+                call: Call<PostOrDeletePropertyResponse>,
+                response: Response<PostOrDeletePropertyResponse>
+            ) {
+                if(response.isSuccessful)
+                    result.value = response.body()!!.message
+                else{
+                    deletePropertyErrorMsg = JSONObject(response.errorBody()!!.string()).getString(Config.MESSAGAE_KEY)
+                    result.value = null
+                }
+            }
+
+            override fun onFailure(call: Call<PostOrDeletePropertyResponse>, t: Throwable) {
+                deletePropertyErrorMsg = t.message.toString()
+                result.value = null
+            }
+        })
+    }
+
+    fun getDeletePropertyErrorMsg(): String{
+        return deletePropertyErrorMsg!!
     }
 }

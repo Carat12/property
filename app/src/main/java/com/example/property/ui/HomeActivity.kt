@@ -11,7 +11,10 @@ import com.example.property.R
 import com.example.property.helper.SessionManager
 import com.example.property.ui.auth.AuthViewModel
 import com.example.property.ui.auth.login.LoginActivity
+import com.example.property.ui.document.DocActivity
 import com.example.property.ui.property.PropertyActivity
+import com.example.property.ui.tenant.TenantActivity
+import com.example.property.ui.tenant.TenantAdapter
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.tool_bar.*
 
@@ -31,11 +34,17 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
         setSupportActionBar(tool_bar)
 
         item_property.setOnClickListener(this)
+        //if user is a tenant
+        item_tenant.isEnabled = !SessionManager.isTenant()
+        item_tenant.setOnClickListener(this)
+        item_doc.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
         when(v){
             item_property -> startActivity(Intent(this, PropertyActivity::class.java))
+            item_tenant -> startActivity(Intent(this, TenantActivity::class.java))
+            item_doc -> startActivity(Intent(this, DocActivity::class.java))
         }
     }
 

@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.os.Handler
 import com.example.property.R
 import com.example.property.helper.SessionManager
-import com.example.property.ui.auth.ChoiceActivity
 import com.example.property.ui.auth.login.LoginActivity
 
 class SplashActivity : AppCompatActivity() {
@@ -29,5 +28,6 @@ class SplashActivity : AppCompatActivity() {
             startActivity(Intent(this, HomeActivity::class.java))
         else
             startActivity(Intent(this, LoginActivity::class.java))
+        finish()
     }
 }

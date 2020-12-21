@@ -20,6 +20,7 @@ class PropertyViewModel: ViewModel(){
     var getPropertyResult: MutableLiveData<ArrayList<Property>> = MutableLiveData()
     var postPropertyImgResult: MutableLiveData<String> = MutableLiveData()
     var postPropertyResult: MutableLiveData<String> = MutableLiveData()
+    var deletePropertyResult: MutableLiveData<String> = MutableLiveData()
 
     fun getAllProperty() {
         repository.getAllProperty(getPropertyResult)
@@ -63,5 +64,13 @@ class PropertyViewModel: ViewModel(){
         property.state = address?.adminArea
         property.country = address?.countryName
         Log.d("jun", "yes: $property")
+    }
+
+    fun deleteProperty(propertyId: String){
+        repository.deleteProperty(propertyId, deletePropertyResult)
+    }
+
+    fun getDeletePropertyErrorMsg(): String {
+        return repository.getDeletePropertyErrorMsg()
     }
 }

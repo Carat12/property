@@ -21,7 +21,8 @@
     <color name="rose_red">#e86664</color>
     <color name="bg_dark">#464F56</color>
     <color name="light_serenity">#edf1f7</color>
-    <color name="property_bg_grey">#F0F0F0</color>
+    <color name="bg_grey_step">#F0F0F0</color>
     <color name="step_grey">#DCDCDC</color>
     <color name="text_grey">#828282</color>
+    <color name="light_rose_alpha">#B3F5E9ED</color>
 </resources>

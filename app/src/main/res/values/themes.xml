@@ -17,6 +17,10 @@
         <item name="colorControlNormal">@color/serenity</item>
     </style>
 
+    <style name="Theme.Property.Splash" parent="Theme.Property.Rose">
+        <item name="colorPrimaryVariant">@color/dark_serenity</item>
+    </style>
+
     <style name="Theme.Property.Serenity" parent="Theme.Property.Rose">
         <!--         Primary brand color.-->
         <item name="colorPrimary">@color/serenity</item>
@@ -30,6 +34,14 @@
 
     <style name="Theme.Property.ActionButton" parent="Theme.Property.Rose">
         <item name="colorSecondary">@color/rose_red</item>
+    </style>
+
+    <style name="action_bar">
+        <item name="theme">@style/Theme.Property.ActionButton</item>
+        <item name="android:layout_margin">20dp</item>
+        <item name="tint">@color/white</item>
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:layout_alignParentRight">true</item>
     </style>
 
     <style name="text_input_layout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
@@ -112,4 +124,13 @@
         <item name="cornerFamily">rounded</item>
         <item name="cornerSizeTopLeft">40dp</item>
     </style>
+
+    <style name="Theme.Property.Rose.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.Property.Rose.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.Property.Rose.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

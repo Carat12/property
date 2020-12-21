@@ -7,10 +7,6 @@ import com.example.property.BR
 class Property: BaseObservable(){
     var _id: String? = null
     var userId: String? = null
-    //var address: String? = null
-    //var city: String? = null
-    //var state: String? = null
-    //var country: String? = "United States"
     var image: String? = null
     var purchasePrice: String? = null
     var mortageInfo: Boolean? = null

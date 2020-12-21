@@ -3,20 +3,24 @@ package com.example.property.ui.property
 import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.example.property.R
 import com.example.property.data.models.Property
+import com.example.property.data.models.Tenant
 import com.example.property.databinding.ItemPropertyBinding
 import com.example.property.helper.SessionManager
+import com.example.property.ui.AdapterListener
 import com.example.property.ui.auth.AuthViewModel
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_property.view.*
 
 class PropertyAdapter(var mContext: Context) : RecyclerView.Adapter<PropertyAdapter.ViewHolder>() {
 
+    private lateinit var listener: AdapterListener
     private var mList: ArrayList<Property> = ArrayList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -25,7 +29,7 @@ class PropertyAdapter(var mContext: Context) : RecyclerView.Adapter<PropertyAdap
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(mList[position])
+        holder.bind(mList[position], position)
     }
 
     override fun getItemCount(): Int {
@@ -47,11 +51,10 @@ class PropertyAdapter(var mContext: Context) : RecyclerView.Adapter<PropertyAdap
 
     inner class ViewHolder(var itemBinding: ItemPropertyBinding) :
         RecyclerView.ViewHolder(itemBinding.root) {
-        fun bind(property: Property) {
+        fun bind(property: Property, position: Int) {
             property.setAddressLine()
             itemBinding.property = property
             itemBinding.root.text_view_mortgage_true.isVisible = property.mortageInfo!!
-            Log.d("jun", "mot: ${property.mortageInfo}")
             itemBinding.root.text_view_mortgage_false.isVisible = !property.mortageInfo!!
             Picasso
                 .get()
@@ -59,7 +62,19 @@ class PropertyAdapter(var mContext: Context) : RecyclerView.Adapter<PropertyAdap
                 .placeholder(R.drawable.ic_baseline_image_24)
                 .error(R.drawable.ic_baseline_broken_image_24)
                 .into(itemBinding.root.img_view)
+
+            itemBinding.root.btn_delete_property.setOnClickListener {
+                listener.onDeleteClicked(it, position)
+            }
         }
+    }
+
+    fun setAdapterListener(listener: AdapterListener) {
+        this.listener = listener
+    }
+
+    fun getItemData(position: Int): Property {
+        return mList[position]
     }
 }
 

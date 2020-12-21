@@ -7,5 +7,9 @@ class EndPoint {
 
         const val PROPERTY_IMAGE_ENDPOINT = "upload/property/picture"
         const val PROPERTY_ENDPOINT = "property"
+        const val DELETE_PROPERTY_ENDPOINT = "property/{id}"
+
+        const val TENANT_ENDPOINT = "tenant"
+        const val DELETE_TENANT_ENDPOINT = "tenant/{id}"
     }
 }

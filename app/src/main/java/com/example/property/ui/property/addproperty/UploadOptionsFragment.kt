@@ -28,7 +28,7 @@ import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import kotlinx.android.synthetic.main.bottom_sheet_upload_image.view.*
 
-class UploadOptionsFragment : BottomSheetDialogFragment(), View.OnClickListener {
+class UploadOptionsFragment(var prefix: String) : BottomSheetDialogFragment(), View.OnClickListener {
 
     private lateinit var fragmentView: View
     private lateinit var viewModel: PropertyViewModel
@@ -64,18 +64,19 @@ class UploadOptionsFragment : BottomSheetDialogFragment(), View.OnClickListener 
                     Manifest.permission.READ_EXTERNAL_STORAGE
                 )
             )
-            .withListener(object: MultiplePermissionsListener {
+            .withListener(object : MultiplePermissionsListener {
                 override fun onPermissionsChecked(report: MultiplePermissionsReport?) {
-                    if(report!!.areAllPermissionsGranted()){
+                    if (report!!.areAllPermissionsGranted()) {
                         when (v) {
                             fragmentView.btn_gallery -> openGallery()
                             fragmentView.btn_camera -> openCamera()
                         }
                     }
-                    if(report.isAnyPermissionPermanentlyDenied){
+                    if (report.isAnyPermissionPermanentlyDenied) {
                         showDialog()
                     }
                 }
+
                 override fun onPermissionRationaleShouldBeShown(
                     p0: MutableList<PermissionRequest>?,
                     p1: PermissionToken?
@@ -90,12 +91,12 @@ class UploadOptionsFragment : BottomSheetDialogFragment(), View.OnClickListener 
         AlertDialog.Builder(activity)
             .setTitle("Permissions Permanently Denied")
             .setMessage("If you want to upload images, please go to Settings to grant all required permissions")
-            .setPositiveButton("Go to Settings", object : DialogInterface.OnClickListener{
+            .setPositiveButton("Go to Settings", object : DialogInterface.OnClickListener {
                 override fun onClick(dialog: DialogInterface?, which: Int) {
                     openSettings()
                 }
             })
-            .setNegativeButton("Cancel", object : DialogInterface.OnClickListener{
+            .setNegativeButton("Cancel", object : DialogInterface.OnClickListener {
                 override fun onClick(dialog: DialogInterface?, which: Int) {
                     dialog!!.dismiss()
                 }
@@ -125,20 +126,21 @@ class UploadOptionsFragment : BottomSheetDialogFragment(), View.OnClickListener 
             PICK_FROM_GALLERY -> {
                 if (resultCode == Activity.RESULT_OK) {
                     val uri = data!!.data
-                    listener.onImageAddedFromGallery(uri)
-
                     val path = getPathFromUri(uri!!)
-                    viewModel.setImagePath(path)
+                    listener.onImageAddedFromGallery(uri, path)
+
+                    /*viewModel.setImagePath(path)*/
                     Log.d("jun", "in bottom: get result from gallery")
                 }
             }
             IMAGE_CAPTURE -> {
                 if (resultCode == Activity.RESULT_OK) {
                     val img = data?.extras?.get("data") as? Bitmap
-                    listener.onImageAddedFromCamera(img)
-
                     val uri = saveToGallery(img)
-                    viewModel.setImagePath(getPathFromUri(uri))
+                    val path = getPathFromUri(uri)
+                    listener.onImageAddedFromCamera(img, uri, path)
+
+                    /* viewModel.setImagePath(getPathFromUri(uri))*/
                     Log.d("jun", "in bottom: get result from camera")
                 }
             }
@@ -148,20 +150,23 @@ class UploadOptionsFragment : BottomSheetDialogFragment(), View.OnClickListener 
 
     private fun saveToGallery(img: Bitmap?): Uri? {
         var uri: Uri? = null
-        if(img != null){
+        if (img != null) {
             val values = ContentValues()
-            values.put(MediaStore.Images.Media.DISPLAY_NAME, "property_" + System.currentTimeMillis())
+            values.put(MediaStore.Images.Media.DISPLAY_NAME, prefix + System.currentTimeMillis())
             values.put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg")
             values.put(MediaStore.Images.Media.RELATIVE_PATH, Environment.DIRECTORY_PICTURES)
 
-            uri = activity!!.contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values)
-            if(uri != null){
+            uri = activity!!.contentResolver.insert(
+                MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                values
+            )
+            if (uri != null) {
                 val outputStreem = activity!!.contentResolver.openOutputStream(uri)
-                try{
+                try {
                     img.compress(Bitmap.CompressFormat.JPEG, 100, outputStreem)
-                }catch (e: Exception){
-                    Log.d("jun",e.message.toString())
-                }finally {
+                } catch (e: Exception) {
+                    Log.d("jun", e.message.toString())
+                } finally {
                     outputStreem?.close()
                 }
             }
@@ -170,7 +175,7 @@ class UploadOptionsFragment : BottomSheetDialogFragment(), View.OnClickListener 
     }
 
     fun getPathFromUri(uri: Uri?): String {
-        if(uri == null)
+        if (uri == null)
             return ""
         var cursor: Cursor? = null
         return try {
@@ -186,12 +191,12 @@ class UploadOptionsFragment : BottomSheetDialogFragment(), View.OnClickListener 
         }
     }
 
-    interface OnImageAddedListener{
-        fun onImageAddedFromCamera(img: Bitmap?)
-        fun onImageAddedFromGallery(uri: Uri?)
+    interface OnImageAddedListener {
+        fun onImageAddedFromCamera(img: Bitmap?, uri: Uri?, path: String)
+        fun onImageAddedFromGallery(uri: Uri?, path: String)
     }
 
-    fun setImageAddedListener(listener: OnImageAddedListener){
+    fun setImageAddedListener(listener: OnImageAddedListener) {
         this.listener = listener
     }
 }

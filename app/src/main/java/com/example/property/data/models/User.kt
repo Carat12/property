@@ -1,5 +1,6 @@
 package com.example.property.data.models
 
+//for landlord or tenant to register and login
 data class User(
     val type: String? = null,
     val name: String? = null,
@@ -13,11 +14,3 @@ data class User(
         const val KEY_USER = "User"
     }
 }
-/*
-
-data class Tenant(
-    type: String?,
-    name: String?,
-    email: String?,
-    password: String?,
-): User()*/

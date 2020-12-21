@@ -25,6 +25,7 @@ import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
+import kotlinx.android.synthetic.main.fragment_step_one.*
 import kotlinx.android.synthetic.main.fragment_step_one.view.*
 
 class StepOneFragment : Fragment(), View.OnClickListener {
@@ -60,7 +61,7 @@ class StepOneFragment : Fragment(), View.OnClickListener {
     }
 
     override fun onClick(v: View?) {
-        when(v){
+        when (v) {
             fragmentView.btn_get_location -> getCurrentLocation()
             fragmentView.btn_next -> {
                 activity!!.supportFragmentManager.beginTransaction()
@@ -72,9 +73,15 @@ class StepOneFragment : Fragment(), View.OnClickListener {
     }
 
     private fun getCurrentLocation() {
-        if(ContextCompat.checkSelfPermission(activity!!, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED){
+        if (ContextCompat.checkSelfPermission(
+                activity!!,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
             requestPermissions(arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), REQUEST_LOCATION)
-        }else{
+        } else {
+            //progress bar
+            progress_bar.visibility = View.VISIBLE
             val locationRequest = LocationRequest()
                 .setInterval(10000)
                 .setFastestInterval(3000)
@@ -84,7 +91,7 @@ class StepOneFragment : Fragment(), View.OnClickListener {
                     override fun onLocationResult(result: LocationResult?) {
                         LocationServices.getFusedLocationProviderClient(activity!!)
                             .removeLocationUpdates(this)
-                        if(result != null && result.locations.isNotEmpty()){
+                        if (result != null && result.locations.isNotEmpty()) {
                             val location = result.locations[result.locations.size - 1]
                             Log.d("jun", "location: $location")
                             getAddressByLocation(location)
@@ -101,10 +108,13 @@ class StepOneFragment : Fragment(), View.OnClickListener {
         activity?.startService(intent)
     }
 
-    inner class AddressResultReceiver(handler: Handler?) : ResultReceiver(handler){
+    inner class AddressResultReceiver(handler: Handler?) : ResultReceiver(handler) {
         override fun onReceiveResult(resultCode: Int, resultData: Bundle?) {
+            //progress bar
+            progress_bar.visibility = View.GONE
+
             super.onReceiveResult(resultCode, resultData)
-            if(resultCode == Config.SUCCESS && resultData != null){
+            if (resultCode == Config.SUCCESS && resultData != null) {
                 val address = resultData.getParcelable<Address>(Config.RESULT_KEY)
                 viewModel.setPropertyAddress(address)
             }
@@ -118,7 +128,7 @@ class StepOneFragment : Fragment(), View.OnClickListener {
     ) {
         Log.d("jun", "permission result")
         //super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if(requestCode == REQUEST_LOCATION)
+        if (requestCode == REQUEST_LOCATION)
             getCurrentLocation()
     }
 }

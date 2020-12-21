@@ -39,7 +39,7 @@ data class Metadata(
     val fieldName: String
 )
 
-data class PostPropertyResponse(
+data class PostOrDeletePropertyResponse(
     val data: Property,
     val error: Boolean,
     val message: String
@@ -50,3 +50,14 @@ data class GetPropertyResponse(
     val error: Boolean
 )
 
+data class GetTenantResponse(
+    val count: Int,
+    val data: ArrayList<Tenant>,
+    val error: Boolean
+)
+
+data class PostOrDeleteTenantResponse(
+    val data: Tenant,
+    val error: Boolean,
+    val message: String
+)

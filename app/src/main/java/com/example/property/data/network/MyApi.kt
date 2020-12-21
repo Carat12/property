@@ -21,11 +21,23 @@ interface MyApi {
     fun getProperty(): Call<GetPropertyResponse>
 
     @POST(EndPoint.PROPERTY_ENDPOINT)
-    fun postProperty(@Body property: Property): Call<PostPropertyResponse>
+    fun postProperty(@Body property: Property): Call<PostOrDeletePropertyResponse>
 
     @Multipart
     @POST(EndPoint.PROPERTY_IMAGE_ENDPOINT)
     fun postPropertyImage(@Part image: MultipartBody.Part): Call<PropertyImgResponse>
+
+    @DELETE(EndPoint.DELETE_PROPERTY_ENDPOINT)
+    fun deleteProperty(@Path("id") id: String): Call<PostOrDeletePropertyResponse>
+
+    @GET(EndPoint.TENANT_ENDPOINT)
+    fun getTenants(): Call<GetTenantResponse>
+
+    @POST(EndPoint.TENANT_ENDPOINT)
+    fun postTenant(@Body tenant: Tenant): Call<PostOrDeleteTenantResponse>
+
+    @DELETE(EndPoint.DELETE_TENANT_ENDPOINT)
+    fun deleteTenant(@Path("id") id: String): Call<PostOrDeleteTenantResponse>
 
 
     companion object{

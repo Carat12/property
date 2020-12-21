@@ -11,4 +11,18 @@
         <attr name="imgSrc" format="reference" />
         <attr name="title" format="string" />
     </declare-styleable>
+
+    <declare-styleable name="step_title_view">
+        <attr name="stepImgSrc" format="reference" />
+        <attr name="stepTitle" format="string" />
+    </declare-styleable>
+    <string name="title_activity_doc">DocActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 </resources>
